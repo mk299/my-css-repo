@@ -1,29 +1,37 @@
 
 /* 目標設定年度 & 期間を並べる */
-body div.kb-field[field-id="目標設定年度"],
-body div.kb-field[field-id="目標設定期間"] {
-  display: inline-block !important;
-  width: 48% !important;
-  vertical-align: top !important;
-  margin-right: 2% !important;
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-field[field-id="目標設定年度"],
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-field[field-id="目標設定期間"] {
+  display: inline-block;
+  width: 48%;
+  margin-right: 2%;
+  vertical-align: top;
 }
 
 /* 表形式の整形 */
-body .kb-table {
-  display: table !important;
-  width: 100% !important;
-  border-collapse: collapse !important;
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table {
+  display: table;
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
 }
 
-body .kb-table > div {
-  display: table-row !important;
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table > div {
+  display: table-row;
 }
 
-body .kb-table > div > div {
-  display: table-cell !important;
-  border: 1px solid #ccc !important;
-  padding: 6px !important;
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table > div > div {
+  display: table-cell;
+  padding: 8px;
+  border: 1px solid #ccc;
+  vertical-align: top;
 }
 
-
-
+/* 項目の列を強調（1列目） */
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table > div > div:first-child {
+  background: #f0f0f0;
+  font-weight: bold;
+  width: 30%;
+}
