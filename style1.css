@@ -5,33 +5,35 @@ body .kb-injector .kb-injector-main .kb-injector-body
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-field[field-id="目標設定期間"] {
   display: inline-block;
-  width: 48%;
+  width: 48% !important;
   margin-right: 2%;
   vertical-align: top;
 }
 
 /* 表形式の整形 */
-body .kb-injector .kb-injector-main .kb-injector-body .kb-table {
-  display: table;
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1em;
+/* Boost! テーブル内のレコード行（1レコード）をFlex化 */
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-table > div.kb-table-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* 行内の隙間 */
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 12px;
 }
 
-body .kb-injector .kb-injector-main .kb-injector-body .kb-table > div {
-  display: table-row;
+/* 各フィールドを2列幅に */
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-table > div.kb-table-row > div {
+  flex: 1 1 calc(50% - 12px);
+  box-sizing: border-box;
 }
 
-body .kb-injector .kb-injector-main .kb-injector-body .kb-table > div > div {
-  display: table-cell;
-  padding: 8px;
-  border: 1px solid #ccc;
-  vertical-align: top;
+/* レスポンシブ対応：画面が狭いと1列に */
+@media (max-width: 768px) {
+  body .kb-injector .kb-injector-main .kb-injector-body 
+  .kb-table > div.kb-table-row > div {
+    flex: 1 1 100%;
+  }
 }
 
-/* 項目の列を強調（1列目） */
-body .kb-injector .kb-injector-main .kb-injector-body .kb-table > div > div:first-child {
-  background: #f0f0f0;
-  font-weight: bold;
-  width: 30%;
-}
