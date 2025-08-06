@@ -15,7 +15,7 @@ body .kb-injector .kb-injector-main .kb-injector-body
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-field[field-id="目標設定期間"] {
   display: inline-block;
-  width: 48%;
+  width: 48% !important;
   margin-right: 2%;
   vertical-align: top;
 }
@@ -68,7 +68,7 @@ body .kb-injector .kb-injector-main .kb-injector-body
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-table .kb-field-caption {
   white-space: nowrap;
-  width: 120px;
+  width: 30%;
   flex-shrink: 0;
 }
 
