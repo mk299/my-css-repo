@@ -1,25 +1,70 @@
+/****************************************
+ * Boost! カスタマイズCSSまとめ
+ * 目的：視認性・操作性改善（2列表示／整形）
+ ****************************************/
 
-/* 目標設定年度 & 期間を並べる */
+/* === 共通：フォームフィールドのマージン調整 === */
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field {
+  margin-bottom: 1em;
+}
+
+
+/* === 1. フォームフィールド「目標設定年度」「目標設定期間」を横並び === */
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-field[field-id="目標設定年度"],
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-field[field-id="目標設定期間"] {
   display: inline-block;
-  width: 48% !important;
+  width: 48%;
   margin-right: 2%;
   vertical-align: top;
 }
 
+/* 「年度」などの補助テキスト（.kb-guide, .kb-unit）を非表示 */
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-field[field-id="目標設定年度"] .kb-guide,
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-field[field-id="目標設定年度"] .kb-unit {
+  display: none;
+}
 
-/* テーブル内の各フィールド（kb-field）を横並びに整形 */
+
+/* === 2. Boost! テーブル行を 2列に表示（レスポンシブ対応）=== */
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-table > div.kb-table-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 12px;
+  border-bottom: 1px dashed #ccc;
+  padding-bottom: 12px;
+}
+
+/* テーブル内各フィールド（2列構成） */
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-table > div.kb-table-row > div {
+  flex: 1 1 calc(50% - 12px);
+  box-sizing: border-box;
+}
+
+/* 画面が狭くなったら1列に切り替え */
+@media (max-width: 768px) {
+  body .kb-injector .kb-injector-main .kb-injector-body 
+  .kb-table > div.kb-table-row > div {
+    flex: 1 1 100%;
+  }
+}
+
+
+/* === 3. テーブル内フィールド（ラベルと入力欄）を横並び === */
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-table .kb-field {
   display: flex;
   align-items: center;
-  gap: 8px; /* ラベルと入力欄の間の余白 */
+  gap: 8px;
 }
 
-/* ラベル（caption）を固定幅にして整列 */
+/* ラベル（.kb-field-caption）を固定幅で左に */
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-table .kb-field-caption {
   white-space: nowrap;
@@ -27,7 +72,7 @@ body .kb-injector .kb-injector-main .kb-injector-body
   flex-shrink: 0;
 }
 
-/* 入力欄を伸ばす */
+/* 入力欄（.kb-field-value）を右側に広げる */
 body .kb-injector .kb-injector-main .kb-injector-body 
 .kb-table .kb-field-value {
   flex: 1;
