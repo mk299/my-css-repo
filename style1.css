@@ -1,1 +1,26 @@
+/* 目標設定年度 & 期間を並べる */
+div[field-id="目標設定年度"],
+div[field-id="目標設定期間"] {
+  display: inline-block;
+  vertical-align: top;
+  width: 48%;
+  margin-right: 2%;
+}
 
+/* 表形式の整形 */
+.kb-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1em;
+}
+.kb-table th,
+.kb-table td {
+  padding: 8px;
+  border: 1px solid #ccc;
+  vertical-align: top;
+}
+.kb-table th {
+  background: #f0f0f0;
+  text-align: left;
+  width: 30%;
+}
