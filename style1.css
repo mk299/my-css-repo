@@ -1,7 +1,9 @@
 body .kb-injector .kb-field .kb-field-caption {
     border: 1px solid #ccc;
 }
-
+body .kb-injector {
+    background-color: #fff;
+}
 
 /* 目標設定年度 & 期間を並べる */
 div[field-id="目標設定年度"],
