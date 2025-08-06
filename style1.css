@@ -10,30 +10,25 @@ body .kb-injector .kb-injector-main .kb-injector-body
   vertical-align: top;
 }
 
-/* 表形式の整形 */
-/* Boost! テーブル内のレコード行（1レコード）をFlex化 */
+
+/* テーブル内の各フィールド（kb-field）を横並びに整形 */
 body .kb-injector .kb-injector-main .kb-injector-body 
-.kb-table > div.kb-table-row {
+.kb-table .kb-field {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px; /* 行内の隙間 */
-  margin-bottom: 12px;
-  border-bottom: 1px dashed #ccc;
-  padding-bottom: 12px;
+  align-items: center;
+  gap: 8px; /* ラベルと入力欄の間の余白 */
 }
 
-/* 各フィールドを2列幅に */
+/* ラベル（caption）を固定幅にして整列 */
 body .kb-injector .kb-injector-main .kb-injector-body 
-.kb-table > div.kb-table-row > div {
-  flex: 1 1 calc(50% - 12px);
-  box-sizing: border-box;
+.kb-table .kb-field-caption {
+  white-space: nowrap;
+  width: 120px;
+  flex-shrink: 0;
 }
 
-/* レスポンシブ対応：画面が狭いと1列に */
-@media (max-width: 768px) {
-  body .kb-injector .kb-injector-main .kb-injector-body 
-  .kb-table > div.kb-table-row > div {
-    flex: 1 1 100%;
-  }
+/* 入力欄を伸ばす */
+body .kb-injector .kb-injector-main .kb-injector-body 
+.kb-table .kb-field-value {
+  flex: 1;
 }
-
