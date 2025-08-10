@@ -1,0 +1,127 @@
+/****************************************
+ * Boost! カスタマイズCSSまとめ
+ * 目的：視認性・操作性改善（2列表示／整形）
+ * 概要:
+ * - 共通の色/余白/角丸などを変数化
+ * - 既存CSSをSCSSネストで整理
+ * 対象: .kb-injector配下のフォーム/テーブルUI
+ ****************************************/
+
+// ===== 0) 共通変数 ===== */
+$primary-color: #0040A6;
+$primary-color-inverse: #FFFFFF;
+$secondary-color: #585e61;
+$secondary-color-light: #DCEAFF;
+$accent-color: #FFA500;
+$background-color: #FFFFFF;
+$text-color: #2E3740;
+
+// UIトークン */
+$radius: 8px;
+$gap-sm: 8px;
+$gap-md: 12px;
+$gap-lg: 16px;
+$border-color: #ccc; // 必要なら: mix($secondary-color, #fff, 70%) などに変更 */
+$label-width: 30%;
+$bp-md: 768px;
+
+// スコープ（長いセレクタを一箇所に集約） */
+$kb-scope: 'body .kb-injector .kb-injector-main .kb-injector-body';
+
+// ===== 1) ベース（共通の見た目）===== */
+#{$kb-scope} {
+  color: $text-color;
+  input,
+  select,
+  textarea {
+    color: $text-color;
+    border: 1px solid $border-color;
+    border-radius: $radius;
+    padding: 0.5em 0.6em;
+    background: $background-color;
+
+    &:focus {
+      outline: none;
+      border-color: $primary-color;
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.15);
+    }
+  }
+
+  .kb-field-caption {
+    color: $secondary-color;
+    font-weight: 600;
+  }
+
+  .kb-guide,
+  .kb-unit {
+    color: $secondary-color;
+  }
+
+  // === 共通：フォームフィールドのマージン調整 === */
+  .kb-field {
+    margin-bottom: 1em;
+  }
+
+  // === 1. 「目標設定年度」「目標設定期間」を横並び === */
+  .kb-field[field-id="目標設定年度"],
+  .kb-field[field-id="目標設定期間"] {
+    display: inline-block;
+    width: 48% !important;
+    margin-right: 2%;
+    vertical-align: top;
+  }
+
+  // 「年度」などの補助テキストを非表示（年度側のみ） */
+  .kb-field[field-id="目標設定年度"] {
+    .kb-guide,
+    .kb-unit {
+      display: none;
+    }
+  }
+
+  // === 2. Boost! テーブル行を 2列に表示（レスポンシブ対応）=== */
+  .kb-table {
+    > div.kb-table-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: $gap-md;
+      margin-bottom: $gap-md;
+      border-bottom: 1px dashed $border-color;
+      padding-bottom: $gap-md;
+
+      // テーブル内各フィールド（2列構成） */
+      > div {
+        flex: 1 1 calc(50% - #{$gap-md});
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  // 画面が狭くなったら1列に切り替え */
+  @media (max-width: $bp-md) {
+    .kb-table > div.kb-table-row > div {
+      flex: 1 1 100%;
+    }
+  }
+
+  // === 3. テーブル内フィールド（ラベルと入力欄）を横並び === */
+  .kb-table {
+    .kb-field {
+      display: flex;
+      align-items: center;
+      gap: $gap-sm;
+    }
+
+    // ラベル（固定幅で左に） */
+    .kb-field-caption {
+      white-space: nowrap;
+      width: $label-width;
+      flex-shrink: 0;
+    }
+
+    // 入力欄（右側に広げる） */
+    .kb-field-value {
+      flex: 1;
+    }
+  }
+}
