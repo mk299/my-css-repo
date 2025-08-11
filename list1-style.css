@@ -1,0 +1,46 @@
+@charset "UTF-8";
+/***************************************
+ * Boost!Echo カスタマイズCSS
+ * 対象：個人目標管理一覧
+ * 概要:
+ * - 共通の色/余白/角丸などを変数化
+ * - 既存CSSをSCSSネストで整理
+ * 対象: .kb-injector配下のフォーム/テーブルUI
+ ****************************************/
+:root {
+  --emphasis-color:rgba(52,152,219,1);
+  --bg-color:rgba(255,255,255,1);
+  --fr-color:rgba(38,50,56,1);
+  --color-highlight:rgba(244,67,54,1);
+  --placeholder-color:rgba(38,50,56,0.5);
+  --border-color:rgba(227,231,232,1);
+  --field-bg-color:rgba(247,250,252,0.75);
+  --field-border-color:rgba(207,216,220,1);
+  --field-focus-color:rgba(66,165,245,0.75);
+  --main-bg-color:rgba(242,242,242,1);
+  --main-fr-color:rgba(38,50,56,1);
+  --main-highlight-color:rgba(255,255,255,1);
+  --main-shadow-color:rgba(207,216,220,1);
+  --injector-emphasis-color:rgba(66,165,245,1);
+  --injector-bg-color:rgba(240,240,240,1);
+  --injector-fr-color:rgba(38,50,56,1);
+  --injector-placeholder-color:rgba(38,50,56,0.5);
+  --injector-field-bg-color:rgba(247,250,252,0.75);
+  --injector-field-border-color:rgba(207,216,220,1);
+  --injector-field-focus-color:rgba(66,165,245,0.75);
+  --echo-bg-color:rgba(240,240,240,1);
+  --echo-fr-color:rgba(38,50,56,1);
+  --echo-placeholder-color:rgba(38,50,56,0.5);
+}
+
+body .kb-echo * {
+  font-size: 16px;
+}
+
+body .kb-echo .kb-echo-main {
+  padding: 30px;
+}
+
+body .kb-echo .kb-echo-main .kb-echo-body .kb-echo-body-main .kb-view :is(td, th) {
+  background-color: #fff;
+}
