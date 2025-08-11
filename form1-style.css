@@ -1,0 +1,307 @@
+@charset "UTF-8";
+/****************************************
+ * Boost!Injector カスタマイズCSS
+ * 対象：個人目標管理フォーム
+ * 概要:
+ * - 共通の色/余白/角丸などを変数化
+ * - 既存CSSをSCSSネストで整理
+ * 対象: .kb-injector配下のフォーム/テーブルUI
+ ****************************************/
+body .kb-injector {
+  font-size: 18px;
+}
+body .kb-injector .kb-injector-button {
+  width: 70%;
+}
+body .kb-injector .kb-injector-main .kb-injector-header {
+  background-color: #ffffff;
+  border-radius: 8px !important;
+  padding: 0.5em;
+}
+body .kb-injector .kb-injector-main .kb-injector-body {
+  background-color: #ffffff;
+  color: #2e3740;
+  border-radius: 8px !important;
+  padding: 0.5em;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-number input[type=text],
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-dropdown select,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-textarea textarea,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-text input[type=text],
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-lookup input.kb-lookup-search {
+  color: #2e3740 !important;
+  border: 1px solid #ccc !important;
+  border-radius: 8px !important;
+  padding: 0.1em 0.2em !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-number input[type=text]:focus,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-dropdown select:focus,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-textarea textarea:focus,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-text input[type=text]:focus,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value.kb-lookup input.kb-lookup-search:focus {
+  outline: none !important;
+  border-color: #0040a6 !important;
+  box-shadow: 0 0 0 3px rgba(0, 64, 166, 0.15) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field .kb-field-caption {
+  color: #585e61 !important;
+  font-weight: 600 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field .kb-guide,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field .kb-unit {
+  color: #585e61 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field {
+  margin-bottom: 1em !important;
+  padding-bottom: 0;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field[field-id=目標設定年度],
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field[field-id=目標設定期間] {
+  display: inline-block !important;
+  width: 48% !important;
+  margin-right: 2% !important;
+  vertical-align: top !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field[field-id=目標設定年度] .kb-guide,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field[field-id=目標設定年度] .kb-unit {
+  display: none !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table.kb-scope > div.kb-table-row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 12px !important;
+  margin-bottom: 12px !important;
+  border-bottom: 1px dashed #ccc !important;
+  padding-bottom: 12px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table.kb-scope > div.kb-table-row > div {
+  flex: 1 1 calc(50% - 12px) !important;
+  box-sizing: border-box !important;
+}
+@media (max-width: 768px) {
+  body .kb-injector .kb-injector-main .kb-injector-body .kb-table.kb-scope > div.kb-table-row > div {
+    flex: 1 1 100% !important;
+  }
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table .kb-field {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table .kb-field .kb-field-caption {
+  white-space: nowrap !important;
+  width: 30% !important;
+  flex-shrink: 0 !important;
+  overflow: visible !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table .kb-field .kb-field-value {
+  flex: 1 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table {
+  width: 100% !important;
+  border-collapse: separate !important;
+  border-spacing: 0 !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2) !important;
+  margin-bottom: 16px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table tbody tr.kb-scope:nth-child(even) {
+  background-color: rgba(220, 234, 255, 0.3) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td {
+  padding: 12px !important;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.5) !important;
+  vertical-align: top !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td:last-child.kb-table-button.kb-table-button-extension {
+  width: 120px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field {
+  margin-bottom: 0 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field .kb-field-caption {
+  font-size: 0.9em !important;
+  margin-bottom: 4px !important;
+  display: block !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field .kb-field-value {
+  width: 100% !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field .kb-field-value.kb-number input[type=text], body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field .kb-field-value.kb-dropdown select, body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field .kb-field-value.kb-textarea textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td .kb-field .kb-field-value.kb-textarea textarea {
+  min-height: 60px !important;
+  resize: vertical !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body span.kb-table-caption {
+  font-size: 1.1em !important;
+  font-weight: 600 !important;
+  color: #0040a6 !important;
+  margin-bottom: 8px !important;
+  padding: 8px 0 !important;
+  border-bottom: 2px solid #0040a6 !important;
+  display: block !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body span.kb-table-caption::before {
+  content: "📊 " !important;
+  margin-right: 4px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension {
+  text-align: center !important;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon {
+  border: 1px solid #ccc !important;
+  border-radius: 8px !important;
+  padding: 6px 22px !important;
+  margin: 2px !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon:hover {
+  background: #dceaff !important;
+  border-color: #0040a6 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon.kb-table-row-add.kb-icon-add {
+  color: #28a745 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon.kb-table-row-add.kb-icon-add:hover {
+  background: rgba(40, 167, 69, 0.1) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon.kb-table-row-copy.kb-icon-copy {
+  color: #0040a6 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon.kb-table-row-copy.kb-icon-copy:hover {
+  background: rgba(0, 64, 166, 0.1) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon.kb-table-row-del.kb-icon-del {
+  color: #dc3545 !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body td.kb-table-button.kb-table-button-extension button.kb-icon.kb-table-row-del.kb-icon-del:hover {
+  background: rgba(220, 53, 69, 0.1) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-header {
+  background: linear-gradient(135deg, #0040a6, rgb(0, 83.6626506024, 217)) !important;
+  color: #ffffff !important;
+  padding: 16px !important;
+  border-radius: 8px 8px 0 0 !important;
+  margin-bottom: 16px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-header .kb-injector-header-title {
+  font-size: 1.5em !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-header .kb-injector-header-title::before {
+  content: "🎯 " !important;
+  margin-right: 8px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-header .kb-injector-header-description {
+  opacity: 0.9 !important;
+  font-size: 0.95em !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-footer {
+  margin-top: 16px !important;
+  text-align: center !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-footer .kb-injector-button {
+  background: #ffa500 !important;
+  color: #ffffff !important;
+  border: none !important;
+  padding: 12px 32px !important;
+  border-radius: 8px !important;
+  font-size: 1.1em !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  box-shadow: 0 4px 12px rgba(255, 165, 0, 0.3) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-footer .kb-injector-button:hover {
+  background: #cc8400 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(255, 165, 0, 0.4) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-footer .kb-injector-button:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 8px rgba(255, 165, 0, 0.3) !important;
+}
+@media (max-width: 768px) {
+  body .kb-injector .kb-injector-main .kb-injector-body .kb-field[field-id=目標設定年度],
+  body .kb-injector .kb-injector-main .kb-injector-body .kb-field[field-id=目標設定期間] {
+    display: block !important;
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 12px !important;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table {
+    font-size: 0.9em !important;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table .kb-field {
+    display: block !important;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td {
+    padding: 8px !important;
+    display: block !important;
+    width: 100% !important;
+    border-bottom: 1px solid #ccc !important;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table td:last-child.kb-table-button.kb-table-button-extension {
+    width: 100% !important;
+    text-align: center !important;
+    padding-top: 12px !important;
+    border-bottom: 2px solid #0040a6 !important;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table .kb-field .kb-field-caption,
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table .kb-field .kb-field-value {
+    width: 100%;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table tbody tr.kb-scope {
+    display: block !important;
+    border: 1px solid #ccc !important;
+    border-radius: 8px !important;
+    margin-bottom: 12px !important;
+    background: #ffffff !important;
+  }
+  body .kb-injector .kb-injector-main .kb-injector-body table.kb-table tbody tr.kb-scope:hover {
+    box-shadow: 0 4px 12px rgba(0, 64, 166, 0.15) !important;
+  }
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field.kb-unuse {
+  display: none !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value {
+  position: relative !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value > div[style*="display: none"] {
+  position: absolute !important;
+  top: 100% !important;
+  left: 0 !important;
+  z-index: 1000 !important;
+  margin-top: 4px !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value > div[style*="display: none"] span {
+  background: #dc3545 !important;
+  color: white !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+  font-size: 0.85em !important;
+  white-space: nowrap !important;
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3) !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field-value > div[style*="display: none"] span::before {
+  content: "⚠️ " !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-table,
+body .kb-injector .kb-injector-main .kb-injector-body .kb-injector-button {
+  transition: all 0.2s ease !important;
+}
+body .kb-injector .kb-injector-main .kb-injector-body .kb-field:focus-within .kb-field-caption {
+  color: #0040a6 !important;
+  font-weight: 700 !important;
+}
