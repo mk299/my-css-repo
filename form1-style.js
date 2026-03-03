@@ -1,12 +1,11 @@
 (function () {
   'use strict';
 
-  const ROOT_SELECTOR = '.kb-injector';
   const NAV_ID = 'kb-fab-nav';
+  const POPUP_SELECTOR = '.kb-echo-popup';
   const SCROLL_MARGIN = 4;
 
-  /** Boost!Injectorのルートが出るまで待つ */
-  function waitForElement(selector, timeoutMs = 8000) {
+  function waitForElement(selector, timeoutMs = 10000) {
     return new Promise((resolve, reject) => {
       const start = Date.now();
       const timer = setInterval(() => {
@@ -17,83 +16,9 @@
     });
   }
 
-  /** スクロールできる要素か？ */
-  function isScrollable(el) {
-    if (!el) return false;
-    const style = getComputedStyle(el);
-    const overflowY = style.overflowY;
-    const canScroll = (overflowY === 'auto' || overflowY === 'scroll');
-    return canScroll && el.scrollHeight > el.clientHeight + 5;
-  }
+  function ensureNav() {
+    if (document.getElementById(NAV_ID)) return document.getElementById(NAV_ID);
 
-  /**
-   * スクロール対象を決める
-   * - まず .kb-injector から祖先方向に「スクロール可能」な要素を探す
-   * - なければ window（documentElement）を使う
-   */
-  function detectScrollTarget(root) {
-    // root自身〜祖先をたどる
-    let el = root;
-    while (el && el !== document.body) {
-      if (isScrollable(el)) return el;
-      el = el.parentElement;
-    }
-
-    // 画面全体スクロールがあるか
-    const doc = document.documentElement;
-    if (doc.scrollHeight > doc.clientHeight + 5) return window;
-
-    // 最後の保険
-    return window;
-  }
-
-  /** スクロール値取得 */
-  function getScrollState(target) {
-    const doc = document.documentElement;
-
-    if (target === window) {
-      const y = window.scrollY || doc.scrollTop || 0;
-      const maxY = doc.scrollHeight - doc.clientHeight;
-      return { y, maxY };
-    } else {
-      const y = target.scrollTop;
-      const maxY = target.scrollHeight - target.clientHeight;
-      return { y, maxY };
-    }
-  }
-
-  /** スクロール実行 */
-  function scrollToTop(target) {
-    if (target === window) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      target.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }
-
-  function scrollToBottom(target) {
-    if (target === window) {
-      const doc = document.documentElement;
-      window.scrollTo({ top: doc.scrollHeight, behavior: 'smooth' });
-    } else {
-      target.scrollTo({ top: target.scrollHeight, behavior: 'smooth' });
-    }
-  }
-
-  /** ボタン無効化 */
-  function updateDisabledState(target, btnUp, btnDown) {
-    const { y, maxY } = getScrollState(target);
-    btnUp.classList.toggle('is-disabled', y <= SCROLL_MARGIN);
-    btnDown.classList.toggle('is-disabled', (maxY - y) <= SCROLL_MARGIN);
-  }
-
-  function createFabNav(root) {
-    // 二重生成防止
-    if (document.getElementById(NAV_ID)) return;
-
-    const target = detectScrollTarget(root);
-
-    // body直下に出す（fixedを確実に）
     const nav = document.createElement('div');
     nav.id = NAV_ID;
 
@@ -101,37 +26,45 @@
     btnUp.type = 'button';
     btnUp.textContent = '↑';
     btnUp.title = '一番上へ';
-    btnUp.setAttribute('aria-label', '一番上へ');
 
     const btnDown = document.createElement('button');
     btnDown.type = 'button';
     btnDown.textContent = '↓';
     btnDown.title = '一番下へ';
-    btnDown.setAttribute('aria-label', '一番下へ');
     btnDown.className = 'kb-fab-down';
-
-    btnUp.addEventListener('click', () => scrollToTop(target));
-    btnDown.addEventListener('click', () => scrollToBottom(target));
 
     nav.appendChild(btnUp);
     nav.appendChild(btnDown);
     document.body.appendChild(nav);
 
-    // スクロール対象が window か要素かで監視先を切り替え
-    const onScroll = () => updateDisabledState(target, btnUp, btnDown);
+    return nav;
+  }
 
-    if (target === window) {
-      window.addEventListener('scroll', onScroll, { passive: true });
-    } else {
-      target.addEventListener('scroll', onScroll, { passive: true });
-    }
+  function updateDisabled(popup, btnUp, btnDown) {
+    const y = popup.scrollTop;
+    const maxY = popup.scrollHeight - popup.clientHeight;
+
+    btnUp.classList.toggle('is-disabled', y <= SCROLL_MARGIN);
+    btnDown.classList.toggle('is-disabled', (maxY - y) <= SCROLL_MARGIN);
+  }
+
+  function bind(popup) {
+    const nav = ensureNav();
+    const btnUp = nav.querySelector('button:nth-child(1)');
+    const btnDown = nav.querySelector('button:nth-child(2)');
+
+    btnUp.onclick = () => popup.scrollTo({ top: 0, behavior: 'smooth' });
+    btnDown.onclick = () => popup.scrollTo({ top: popup.scrollHeight, behavior: 'smooth' });
+
+    const onScroll = () => updateDisabled(popup, btnUp, btnDown);
+    popup.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
 
-    // 初期状態
     onScroll();
   }
 
-  waitForElement(ROOT_SELECTOR)
-    .then((root) => createFabNav(root))
+  // popupが出現してから紐付け
+  waitForElement(POPUP_SELECTOR)
+    .then((popup) => bind(popup))
     .catch(() => {});
 })();
