@@ -435,15 +435,12 @@ body .kb-injector .kb-injector-main .kb-injector-body .kb-table
   display: none !important;
 }
 
-/***************************************
- * 追従ボタン：上へ / 下へ（確実版）
- * ※body直下に出す想定
- ***************************************/
+/* 追従ボタン（親ページに表示） */
 #kb-fab-nav {
   position: fixed;
   right: 18px;
   bottom: 18px;
-  z-index: 2147483647; /* できるだけ最前面 */
+  z-index: 2147483647;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -460,17 +457,6 @@ body .kb-injector .kb-injector-main .kb-injector-body .kb-table
   font-weight: 700;
   cursor: pointer;
   box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-}
-
-#kb-fab-nav button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 64, 166, 0.22);
-  background: rgba(220, 234, 255, 0.55);
-}
-
-#kb-fab-nav button:active {
-  transform: translateY(0);
 }
 
 #kb-fab-nav button.kb-fab-down { color: #28a745; }
@@ -480,8 +466,3 @@ body .kb-injector .kb-injector-main .kb-injector-body .kb-table
   pointer-events: none;
 }
 
-/* スマホ */
-@media (max-width: 768px) {
-  #kb-fab-nav { right: 12px; bottom: 12px; }
-  #kb-fab-nav button { width: 46px; height: 46px; border-radius: 12px; font-size: 18px; }
-}
