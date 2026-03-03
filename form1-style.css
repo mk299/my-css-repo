@@ -434,35 +434,3 @@ body .kb-injector .kb-injector-main .kb-injector-body .kb-table
   .kb-field[field-id="平均計算用_コンピ"] {
   display: none !important;
 }
-
-/* 追従ボタン（親ページに表示） */
-#kb-fab-nav {
-  position: fixed;
-  right: 18px;
-  bottom: 18px;
-  z-index: 2147483647;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-#kb-fab-nav button {
-  width: 52px;
-  height: 52px;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,0.15);
-  background: #ffffff;
-  color: #0040a6;
-  font-size: 20px;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
-}
-
-#kb-fab-nav button.kb-fab-down { color: #28a745; }
-
-#kb-fab-nav button.is-disabled {
-  opacity: .35;
-  pointer-events: none;
-}
-
